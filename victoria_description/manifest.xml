@@ -1,0 +1,16 @@
+<package>
+  <description brief="victoria_description">
+
+     victoria_description
+
+  </description>
+  <author>Jose Capriles</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/victoria_description</url>
+  <depend package="urdf"/>
+  <depend package="xacro"/>
+
+</package>
+
+
