@@ -1,5 +1,5 @@
-# victoria_base
-Ros package for interfacing with Victoria Platform.
+# victoria_ros
+Collection of ROS related launch files and configurations.
 
 # victoria_control
 Includes teleop and control launch files used by gazebo simulator. 
