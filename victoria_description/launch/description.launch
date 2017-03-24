@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="laser_enabled" default="false"/>
+  <arg name="kinect_enabled" default="true"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find victoria_description)/robots/victoria.xacro'
+    laser_enabled:=$(arg laser_enabled)
+    kinect_enabled:=$(arg kinect_enabled)"/>
+
+  <group if="$(arg kinect_enabled)">
+    <include file="$(find realsense_camera)/launch/r200_nodelet_default.launch" />
+  </group>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+</launch>
