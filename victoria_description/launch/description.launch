@@ -4,7 +4,7 @@
   <arg name="laser_enabled" default="false"/>
   <arg name="kinect_enabled" default="true"/>
 
-  <param name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find victoria_description)/robots/victoria.gazebo.xacro'
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find victoria_description)/robots/victoria.gazebo.xacro'
     laser_enabled:=$(arg laser_enabled)
     kinect_enabled:=$(arg kinect_enabled)"/>
 
