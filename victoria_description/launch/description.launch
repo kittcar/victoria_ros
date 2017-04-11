@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="laser_enabled" default="false"/>
+  <arg name="laser_enabled" default="true"/>
   <arg name="kinect_enabled" default="true"/>
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find victoria_description)/robots/victoria.gazebo.xacro'
