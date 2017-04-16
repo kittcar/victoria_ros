@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="depth_laser_filter" type="single_readings_filter_node" respawn="false" name="single_reading_scan_filter">
+		<param name="min_th" value="0.6"/>
+		<param name="laser_topic_in" value="scan"/>
+		<param name="laser_topic_out" value="scan_single_filter"/>
+	</node>
+</launch>

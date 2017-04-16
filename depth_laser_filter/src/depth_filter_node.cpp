@@ -10,10 +10,13 @@ class GenericLaserScanFilterNode
 protected:
   // Our NodeHandle
   ros::NodeHandle nh_;
+  ros::NodeHandle private_nh_;
+
 
   // Components for tf::MessageFilter
   tf::TransformListener tf_;
-  message_filters::Subscriber<sensor_msgs::LaserScan> scan_sub_;
+  message_filters::Subscriber<sensor_msgs::LaserScan> *scan_sub_;
+
 
   // Components for publishing
   sensor_msgs::LaserScan msg_;
@@ -23,17 +26,27 @@ protected:
 
   double min_th_;
 
+  std::string sub_topic_;
+  std::string pub_topic_;
+
 
 public:
   // Constructor
-  GenericLaserScanFilterNode() :
-    scan_sub_(nh_, "scan_depth", 50), 
-    min_th_(0.6)
+  GenericLaserScanFilterNode():
+    private_nh_("~"),
+    min_th_(0.6), 
+    sub_topic_("scan"), 
+    pub_topic_("scan_filtered")
   {
-    scan_sub_.registerCallback(boost::bind(&GenericLaserScanFilterNode::callback, this, _1));
+    private_nh_.getParam("min_th", min_th_);
+    private_nh_.getParam("laser_topic_in", sub_topic_);
+    private_nh_.getParam("laser_topic_out", pub_topic_);
+    
+    scan_sub_ = new message_filters::Subscriber<sensor_msgs::LaserScan>(nh_, sub_topic_, 50);
+    scan_sub_->registerCallback(boost::bind(&GenericLaserScanFilterNode::callback, this, _1));
     
     // Advertise output
-    output_pub_ = nh_.advertise<sensor_msgs::LaserScan>("scan_depth_cleaner", 1000);
+    output_pub_ = nh_.advertise<sensor_msgs::LaserScan>(pub_topic_, 100);
   }
   
   // Callback
