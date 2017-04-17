@@ -81,6 +81,15 @@
     <gazebo reference="imu_link">
     </gazebo>
 
+    <link name="gps"/>
+    <joint name="gps_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="gps" />
+    </joint>
+    <gazebo reference="gps">
+    </gazebo>
+
     <!-- Victoria wheel macros -->
     <xacro:victoria_wheel wheel_prefix="front_left">
         <origin xyz="${wheelbase} ${front_track/2} ${-wheel_vertical_offset}" rpy="0 0 0" />
