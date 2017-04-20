@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="depth_laser_filter" type="max_range_filter_node" respawn="false" name="depth_laser_filter">
+		<param name="min_th" value="0.6"/>
+		<param name="laser_topic_in" value="scan_depth"/>
+		<param name="laser_topic_out" value="scan_depth_filter"/>
+	</node>
+</launch>
